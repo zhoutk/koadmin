@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <ol class="breadcrumb">
+            <li><a href="javascript:void(0)">系统设置</a>
+            </li>
+            <li class="active">角色管理</li>
+        </ol>
+
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="tisid">角色编号</label>
+                <input type="text" class="form-control" id="tisid">
+            </div>
+            <div class="form-group">
+                <label for="tisname">角色名称</label>
+                <input type="text" class="form-control" id="tisname">
+            </div>
+            <button id="btnRoleQuery" type="button" class="btn btn-default">查询</button>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        角色列表
+                        <button type="button" onclick="onRoleAddClick()" class="btn btn-default">新建</button>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>角色编号</th>
+                                        <th>角色名称</th>
+                                        <th>备注</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="role-placeholder">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                        <div class="center-block" style="width: 350px">
+                            <ul id="paginator"></ul>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+        </div>
+    </div>
+
+    <div id="roleModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">关闭</span>
+                    </button>
+                    <h4 class="modal-title">角色</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="role_form">
+                        <div class="form-group">
+                            <label for="roleid" class="col-sm-2 control-label">角色编号</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="roleid" check-type="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rolename" class="col-sm-2 control-label">角色名称</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="rolename" check-type="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="remark" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="3" id="remark"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button onclick="onRoleSaveClick()" type="button" class="btn btn-primary" id="role_buttonid">保存</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+    <script id="role-template" type="text/x-handlebars-template">
+        {{#datas}}
+        <tr>
+            <td>{{math @index "idx" 1}}</td>
+            <td>{{roleid}}</td>
+            <td>{{rolename}}</td>
+            <td>{{remark}}</td>
+            <td>
+                <button class="btn-link" onclick="onRoleUpdateClick('{{roleid}}')">修改</button>
+                <button class="btn-link" onclick="onRoleDeleteClick('{{roleid}}')">删除</button>
+            </td>
+        </tr>
+        {{/datas}}
+    </script>
+
+    <script type="text/javascript" src="js/role/role.js"></script>
+</body>
+
+</html>
